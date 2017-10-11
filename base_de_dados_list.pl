@@ -18,6 +18,7 @@ ler_do_arquivo(Stream, [X|L]):-
   ler_do_arquivo(Stream, L).
 
 main:-
+  exists_file('sintomas.txt'),
   open('sintomas.txt', read, X),
   ler_do_arquivo(X, Lista),
   select('end_of_file', Lista, R), !,
@@ -48,4 +49,7 @@ write_answer(A):-
   open('output.txt', write, O),
   set_output(O),
   write(A),
-  close(O).
+  close(O),
+  halt.
+
+:- main.

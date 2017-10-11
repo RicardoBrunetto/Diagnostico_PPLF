@@ -1,73 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<!-- Website CSS style -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Website Font style -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-<!-- <link rel="stylesheet" href="styles.css"> -->
-<!-- Google Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-
-  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-  <title>{{.PageTitle}}</title>
-</head>
-
-<!-- <script type='text/javascript'>
-$(document).ready(function() {
-$('input[name=animalselect]').change(function(){
-$('form').submit();
-});
-});
-</script> -->
-<body>
-  <div class="container">
-    <div class="row main">
-      <div class="main-login main-center">
-        <h1>{{.Pergunta}}</h1>
-        {{with $1:=.PageRadioButtons}}
-        <form action="/selected" class="" method="post">
-          {{range $1}}
-          <div class="form-group"><label class="form-check-label"><input class="form-check-input" type="radio" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}}checked{{end}}> {{.Text}} </label></div>
-          {{end}}
-          <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Go!">
-
-        </form>
-        {{end}}
-
-        {{with $1:=.PageCheckBoxes}}
-        <form action="/selected" class="" method="post">
-          {{range $1}}
-          <div class="form-group"><label class="form-check-label"><input class="form-check-input" type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}}checked{{end}}> {{.Text}} </label><br></div>
-          {{end}}
-          <input type="submit" value="Go!">
-        </form>
-        {{end}}
-    </div>
-  </div>
-</div>
-
-{{with $2:=.Answer}}
-<div class="container">
-  <div class="row main">
-    <div class="main-login diag-center">
-<p>Diagóstico Parcial: {{$2}}</p>
-</div>
-</div>
-</div>
-{{end}}
-
-</body>
-
-<style>
 /*
-/* Styles created by Filipe Pina
+/* Created by Filipe Pina
  * Specific styles of signin, register, component
  */
 /*
@@ -126,6 +58,7 @@ input::-webkit-input-placeholder {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 
 }
+
 .form-control {
     height: auto!important;
 padding: 8px 12px !important;
@@ -171,13 +104,12 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
 
 }
 
-
 .diag-center{
  	margin-top: 30px;
  	margin: 0 auto;
  	max-width: 400px;
     padding: 10px 40px;
-	background:#38938c;
+	background:#38e18c;
 	    color: #FFF;
     text-shadow: none;
 	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
@@ -199,7 +131,3 @@ span.input-group-addon i {
 	font-size: 11px;
 	text-align: center;
 }
-</style>
-
-
-</html>
