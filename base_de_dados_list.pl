@@ -20,7 +20,7 @@ ler_do_arquivo(Stream, [X|L]):-
 main:-
   open('sintomas.txt', read, X),
   ler_do_arquivo(X, Lista),
-  select('end_of_file', Lista, R), !, 
+  select('end_of_file', Lista, R), !,
   write(R),
   close(X),
   diagnostico(R).
