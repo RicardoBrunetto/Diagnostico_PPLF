@@ -53,7 +53,7 @@ answer(r06, 0, "Infeccao de Garganta!").
 answer(r07, 0, "Gastroenterite!").
 answer(r08, 0, "Superaquecido!\nRetire o excesso de roupa e abaixe a temperatura do ambiente.\nSe não normalizar em uma hora, procure um medico.").
 answer(r09, 1, "Procure orientacao medica!").
-answer(r10, 1, "Chame uma ambulância imediatamente!").
+answer(r10, 1, "Chame uma ambulancia imediatamente!").
 answer(r11, 0, "Meningite!\nCHAME UMA AMBILANCIA IMEDIATAMENTE!").
 answer(r12, 0, "Caxumba ou Abscesso Dentario!").
 answer(r13, 0, "Crupe Viral (laringotraqueobronquite) ou Bronquite!\nPROCURE ORIENTACAO MEDICA IMEDIATAMENTE!").
