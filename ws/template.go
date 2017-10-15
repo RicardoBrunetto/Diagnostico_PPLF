@@ -53,7 +53,7 @@ var questoes []Question = []Question{
 var ctrl int = 0
 
 func main() {
-  //http.HandleFunc("/", Reset)
+  http.HandleFunc("/", Reset)
   http.HandleFunc("/selected", NextQuestion)
   http.HandleFunc("/reset", Reset)
   log.Fatal(http.ListenAndServe(":8080", nil))
@@ -61,6 +61,7 @@ func main() {
 
 func Reset(w http.ResponseWriter, r *http.Request){
   ctrl = 0
+  log.Print("---- RESET ----")
   os.Remove("../sintomas.txt")
   os.Remove("../output.txt")
   http.Redirect(w, r, "selected", 301)
@@ -68,11 +69,8 @@ func Reset(w http.ResponseWriter, r *http.Request){
 
 func NextQuestion(w http.ResponseWriter, r *http.Request){
   r.ParseForm()
-  // r.Form is now either
-  // map[sintoma:[cats]] OR
-  // map[sintoma:[dogs]]
-  // so get the animal which has been selected
 
+  log.Print("---- NOVA PERGUNTA ----")
 
   mp := r.Form
   strs := mp["sintoma"]
@@ -127,7 +125,7 @@ func NextQuestion(w http.ResponseWriter, r *http.Request){
   }
 
   MyPageVariables := PageVariables{
-    PageTitle: "Sistema de Diagnosticos",
+    PageTitle: "Sistema de Diagnósticos",
     PageCheckBoxes: MyCheckBoxes,
     PageRadioButtons: MyRadioButtons,
     Pergunta: Enunciado,
