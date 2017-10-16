@@ -1,3 +1,1 @@
-'menos de 1 ano'.
-'menos de 6 meses'.
-'febre'.
+'mais de 1 ano'.

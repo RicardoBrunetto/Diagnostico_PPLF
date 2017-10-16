@@ -49,7 +49,7 @@ doenca('Meningite', ['mais de 1 ano', 'vomito', 'sonolencia',  'manchas rosas ac
 doenca('Hepatite', ['mais de 1 ano', 'vomito', 'fezes palidas', 'urina escura']).
 doenca('Infeccao do Sistema Urinario', ['mais de 1 ano', 'vomito', 'dor ao urinar']).
 doenca('Infeccao do Sistema Urinario', ['mais de 1 ano', 'vomito', 'dores abdominais']).
-doenca('Coqueluche', ['mais de 1 ano', 'vomito', 'crise de tosse']).
+doenca('Coqueluche', ['mais de 1 ano', 'vomito', 'crises']).
 doenca('Isso é comum. Procure orientação médica se o vômito persistir', ['mais de 1 ano', 'vomito', 'agitado']).
 doenca('Enjoo de Viagem', ['mais de 1 ano', 'vomito', 'apos viagem']).
 
@@ -158,7 +158,7 @@ main:-
   close(X),
   findall(Z, diagnostico(R, Z), Lista_Final),
   remove_duplicates(Lista_Final, Lista_Final_Unica),
-  write(Lista_Final_Unica),
+  %write(Lista_Final_Unica),
   write_answer(Lista_Final_Unica).
 
 isSubset([], _).
