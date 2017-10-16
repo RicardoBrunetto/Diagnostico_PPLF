@@ -4,9 +4,10 @@ import (
   "net/http"
   "log"
   "html/template"
-  "io/ioutil"
   "os"
   "os/exec"
+  "io/ioutil"
+  "strings"
   "bytes"
 )
 
@@ -34,7 +35,7 @@ type PageVariables struct {
   PageRadioButtons []RadioButton
   PageCheckBoxes   []CheckBox
   Pergunta         string
-  Answer           string
+  Answer           []string
 }
 
 type Question struct{
@@ -46,8 +47,11 @@ type Question struct{
 
 var questoes []Question = []Question{
   //Question{"Selecione os sintomas", RADIO_BUTTON, []string{"Odio frequente", "Raiva assidua",  "Olar bom dia"}, []string{"odio", "raiva",  "bomdia"}},
-  Question{"Selecione os sintomas", CHECK_BOX, []string{"Tosse", "Vomito sem Diarréia",  "Coriza"}, []string{"tosse", "vomito sem diarreia",  "coriza"}},
-  Question{"Selecione os sintomas", CHECK_BOX, []string{"Sonolência", "Irritabilidade",  "Caganeira"}, []string{"sonolencia", "irritabilidade",  "caganeira"}},
+  Question{"Qual a idade do seu bebe?", RADIO_BUTTON, []string{"1 ano ou menos", "Maior que 1 ano"}, []string{"menos de 1 ano", "mais de 1 ano"}},
+  Question{"Caso seu bebê tenha 1 ano ou menos, ele tem entre 0 e 6 meses?", RADIO_BUTTON, []string{"Sim", "Não"}, []string{"menos de 6 meses", ""}},
+  Question{"Seu bebê está com febre?", RADIO_BUTTON, []string{"Sim", "Não"}, []string{"febre", ""}},
+  Question{"Seu bebê está com diarréia?", RADIO_BUTTON, []string{"Sim", "Não"}, []string{"diarreia", ""}},
+  Question{"Seu bebê tem sonolência?", RADIO_BUTTON, []string{"Sim", "Não"}, []string{"sonolencia", ""}},
 }
 
 var ctrl int = 0
@@ -90,7 +94,7 @@ func NextQuestion(w http.ResponseWriter, r *http.Request){
     // ioutil.WriteFile("sintomas.txt", buf.Bytes(), 0600)
   }
 
-  Diag:=""
+  var Diag []string
 
   if len(strs)>0{
     Diag = TryAnswer()
@@ -131,7 +135,7 @@ func NextQuestion(w http.ResponseWriter, r *http.Request){
     Pergunta: Enunciado,
   }
 
-  if Diag != ""{
+  if len(Diag) > 0{
     MyPageVariables.Answer = Diag
   }
 
@@ -148,17 +152,23 @@ func NextQuestion(w http.ResponseWriter, r *http.Request){
   }
 }
 
-func TryAnswer() (string){
+func TryAnswer() ([]string){
+  os.Remove("../output.txt")
   cmd := exec.Command("cmd", "/C", "cd .. & base_de_dados_list.pl")
   cmd.Start()
 
   TEST:
-  if _, err := os.Stat("../output.txt"); os.IsNotExist(err) {
+  if fi, err := os.Stat("../output.txt"); os.IsNotExist(err) ||  fi.Size() == 0 {
     goto TEST
   }
 
-  dat, _ := ioutil.ReadFile("../output.txt")
-  log.Print(string(dat))
+  content, _ := ioutil.ReadFile("../output.txt")
+  lines := strings.Split(string(content), "\n")
+
+  for i := range lines{
+    log.Print(lines[i])
+  }
+
   os.Remove("../output.txt")
-  return string(dat)
+  return lines
 }
