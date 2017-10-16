@@ -61,12 +61,10 @@ $('form').submit();
   <div class="container">
     <div class="row main">
       <div class="main-login diag-center">
-        <p>Possível Diagnóstico:</p>
+        <p>Possível(is) Diagnóstico(s):</p>
   {{with $2:=.Answer}}
   {{range $i := $2}}
         <div><h1>{{$i}}</h1></div>
-        <br>
-        {{if eq (len .Answer) $i}}ou<br>{{end}}
   {{end}}
   {{end}}
 </div>
