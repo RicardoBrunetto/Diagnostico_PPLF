@@ -4,7 +4,7 @@ Este trabalho foi desenvolvido para a disciplina de Paradigma de Programação L
 ## Funcionalidade
 Este programa funciona com interface web escrita em GO no sistema operacional Windows.
 
-Dessa forma, é necessário estar com o pacote da linguagem instalado no computador. [Disponível aqui.](https://golang.org/).
+Dessa forma, é necessário estar com o pacote da linguagem instalado no computador. [Disponível aqui](https://golang.org/).
 Após instalá-la, basta abrir o `cmd` do Windows, navegar até a pasta `ws` e executar `go run template.go`.
 
 O acesso pode ser feito em http://localhost:8080.
