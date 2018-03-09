@@ -158,7 +158,6 @@ main:-
   close(X),
   findall(Z, diagnostico(R, Z), Lista_Final),
   remove_duplicates(Lista_Final, Lista_Final_Unica),
-  %write(Lista_Final_Unica),
   write_answer(Lista_Final_Unica).
 
 isSubset([], _).
@@ -201,12 +200,13 @@ same([H1|R1], [H2|R2]):-
     H1 = H2,
     same(R1, R2).
 
-:- begin_tests(dermatites).
+:- begin_tests(testes).
  %Testes "Determinísticos"
  test(catapora, Z == 'Catapora') :- diagnostico(['mais de 6 meses', 'febre', 'erupcoes na pele', 'macnchas criam bolhas e secam em crostas'], Z).
  test(meningite, Z == 'Meningite') :- diagnostico(['vomito', 'menos de 1 ano', 'mais de 6 meses', 'febre'], Z).
  %Testes Não-Determinísticos
- test(febre, Xs == ['Meningite', 'Infeccao do Sistema Urinario', 'Diagnostico Inconclusivo']) :-
-        findall(X, diagnostico(['menos de 1 ano', 'mais de 6 meses', 'febre',  'vomito'], X), Xs).
+ test(febre) :-
+        findall(X, diagnostico(['menos de 1 ano', 'mais de 6 meses', 'febre',  'vomito'], X), Xs),
+        same(Xs, ['Meningite', 'Infeccao do Sistema Urinario', 'Diagnostico Inconclusivo']).
 
-:- end_tests(dermatites).
+:- end_tests(testes).

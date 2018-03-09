@@ -186,12 +186,8 @@ func TryAnswer() ([]string){
   cmd := exec.Command("cmd", "/C", "cd .. & base_de_dados_list.pl")
   cmd.Start()
 
-   TEST:
-   if fi, err := os.Stat("../output.txt"); os.IsNotExist(err) ||  fi.Size() == 0 {
-     goto TEST
-   }else{
-     time.Sleep(1500 * time.Millisecond)
-   }
+
+     time.Sleep(3000 * time.Millisecond)
 
   content, _ := ioutil.ReadFile("../output.txt")
   lines := strings.Split(string(content), "\n")
